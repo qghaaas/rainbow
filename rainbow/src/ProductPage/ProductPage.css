@@ -1,0 +1,123 @@
+.productpage {
+    width: 100%;
+    height: fit-content;
+    font-family: "Cutive Mono", monospace;
+    margin-bottom: 50px;
+}
+
+.productpage-inner {
+    width: 100%;
+}
+
+.productpage-content {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.productpage-img {
+    width: 35%;
+}
+
+.productpage-content-right {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.productpage-content-right h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: "Rubik", sans-serif;
+}
+
+.productpage-content-subtitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 55%;
+    margin-bottom: 40px;
+}
+
+.productpage-content-reviews {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0 5px;
+    height: 16px;
+}
+
+.productpage-content-reviews li {
+    text-align: center;
+    font-size: 16px;
+    
+}
+
+.productpage-content-favorites {
+    display: flex;
+    gap: 0 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.productpage-content-bot {
+    background-color: rgb(241 241 241);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.productpage-content-bot p {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.productpage-content-basket {
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+    gap: 0 2px;
+
+}
+
+.productpage-content-basket-count {
+    background-color: #00C65E;
+    width: 15%;
+    padding: 5x;
+    font-size: 22px;
+    color: #fff;
+}
+
+.productpage-content-basket-linkpage {
+    background-color: #00C65E;
+    font-family: "Rubik", sans-serif;
+    width: 60%;
+    text-align: center;
+    padding: 5px;
+    color: #fff;
+}
+
+.buyioc {
+    background-color: rgb(241 241 241);
+    width: 46%;
+    display: inline-block;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    align-self: flex-end;
+}
+
+.productpage-details {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: "Rubik", sans-serif;
+}
+
+.productpage-details p {
+    margin: 8px 0;
+}

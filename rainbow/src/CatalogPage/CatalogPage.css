@@ -1,0 +1,175 @@
+.catalogpage {
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 14.5%;
+}
+
+.navigation {
+    color: rgb(230, 230, 230);
+    font-size: 16px;
+    display: flex;
+    gap: 0 5px;
+    align-items: center;
+    margin-bottom: 50px;
+    font-family: "Rubik", sans-serif;
+}
+
+.catalogtitle {
+    font-size: 20px;
+    margin-bottom: 30px;
+    display: block;
+    margin-left: 20%;
+}
+
+.card-container-catalog {
+    justify-content: center;
+    gap: 30px;
+}
+
+.catalog-layout {
+    display: flex;
+    gap: 30px;
+}
+
+.filter-sidebar {
+    width: 240px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: rgb(241 241 241);
+    font-family: "Rubik", sans-serif;
+}
+
+.filter-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.filter-group input,
+.filter-group select {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.apply-button {
+    background-color: #00C65E;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: "Rubik", sans-serif;
+    font-size: 14px;
+}
+
+.catalog-content {
+    flex: 1;
+}
+
+.manufacturer-filter {
+    position: relative;
+}
+
+.manufacturer-search {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.manufacturer-options {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.manufacturer-option {
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.manufacturer-option:hover {
+    background-color: #f5f5f5;
+}
+
+.manufacturer-option.selected {
+    background-color: #00C65E;
+    color: white;
+}
+
+.show-more, .show-less {
+    width: 100%;
+    padding: 8px;
+    background: none;
+    border: none;
+    border-top: 1px solid #eee;
+    color: #00C65E;
+    cursor: pointer;
+    text-align: center;
+    font-size: 13px;
+}
+
+.show-more:hover, .show-less:hover {
+    background-color: #f9f9f9;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 15px;
+}
+
+.checkbox-label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.checkbox-label:hover input ~ .checkmark {
+    background-color: #f1f1f1;
+}
+
+.checkbox-label input:checked ~ .checkmark {
+    background-color: #00C65E;
+    border-color: #00C65E;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-label input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-label .checkmark:after {
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}

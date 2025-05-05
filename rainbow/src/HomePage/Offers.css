@@ -1,0 +1,30 @@
+.offers {
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 50px;
+    font-family: "Rubik", sans-serif;
+}
+
+.offers-inner{
+    width: 100%;
+    display: flex;
+    gap: 0 20px;
+}
+
+.offers-item {
+    width: 20%
+}
+
+.offers-content{
+    width: 100%;
+    height: 30vh;
+    background-color: rgb(241 241 241);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.offers-content img{
+    width: 90%;
+}

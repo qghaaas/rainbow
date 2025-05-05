@@ -1,0 +1,149 @@
+.catalog {
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 100px;
+    font-family: "Cutive Mono", monospace;
+}
+
+.catalog-inner {
+    width: 100%;
+}
+
+.linktocatalog {
+    font-size: 20px;
+    margin-bottom: 30px;
+    display: block;
+    font-family: "Rubik", sans-serif;
+}
+
+.card-container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, 230px);
+    justify-content: flex-start;
+    justify-items: center;
+    margin: 0 auto;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.card {
+    width: 200px;
+    height: auto;
+    position: relative;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-like {
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+}
+
+.card-top {
+    text-align: center;
+}
+
+.card-img {
+    width: 90%;
+    height: 22vh;
+    object-fit: contain; 
+    margin-bottom: 5px;
+}
+
+.card-bot {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-bot p {
+    flex-grow: 0; 
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.card-bot_p-s {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+  
+}
+
+.card-bot_p-s>div {
+    border-radius: 50%;
+    padding: 5px;
+    background-color: #00C65E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-bot_p-s>div>img {
+    width: 25px;
+    height: 25px;
+}
+
+.see-all {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 5px;
+    color: rgb(145, 142, 142);
+    font-size: 16px;
+    font-family: "Cutive Mono", monospace;
+}
+
+.see-all img {
+    width: 20px;
+    height: 20px;
+    transform: rotate(270deg);
+}
+
+.loading,
+.no-results {
+    text-align: center;
+    padding: 40px;
+    font-size: 18px;
+    color: #666;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.card-container {
+    transition: all 0.3s ease;
+}
+
+.cart-icon-container {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.header-basket {
+    position: relative;
+}
+
+.cart-count-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #FF0000;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+}

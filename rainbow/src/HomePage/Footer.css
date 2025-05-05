@@ -1,0 +1,50 @@
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+footer {
+    width: 100%;
+    background-color: rgb(241 241 241);
+    margin-top: auto; 
+    font-family: "Cutive Mono", monospace;
+}
+
+.footer-inner {
+    width: 100%;
+    padding: 40px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0 15px;
+}
+
+.logo-footer h1 {
+    margin: 0;
+    font-size: 20px;
+    font-family: "Rubik", sans-serif;
+}
+
+.contacts-footer {
+    text-align: right;
+}
+
+.contacts-footer p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.contacts-footer b {
+    padding-top: 5px;
+    font-size: 16px;
+    display: block;
+    text-align: left;
+}
+

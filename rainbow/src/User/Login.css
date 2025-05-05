@@ -1,0 +1,152 @@
+.loginregistration {
+    width: 100%;
+    height: fit-content;
+}
+
+.loginregistration-inner {
+    width: 100%;
+    display: flex;
+}
+
+.loginregistration-info {
+    width: 45%;
+    background: #00C65E;
+    padding: 100px 100px 14.5%;
+}
+
+.loginregistration-info-title {
+    margin-bottom: 108px;
+    color: #fff;
+    font-size: 32px;
+    font-weight: 00;
+    line-height: 150%;
+    letter-spacing: 0.5px;
+    text-align: start;
+    ;
+}
+
+.loginregistration-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 45px 0;
+}
+
+.loginregistration-info-list>li {
+    display: flex;
+    gap: 0 15px;
+    align-items: center;
+    justify-content: flex-start;
+    color: #fff;
+    font-size: 22px;
+    line-height: 150%;
+    letter-spacing: 0.5px;
+}
+
+
+
+
+
+
+.loginregistration-form {
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px 0;
+    padding: 220px 0 260px;
+}
+
+.loginregistration-form-title {
+    width: 20%;
+    text-align: center;
+}
+
+.loginregistration-form-title h3 {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 120%;
+    color: #363A45;
+    margin-bottom: 20px;
+}
+
+.loginregistration-form-title p {
+    line-height: 150%;
+    color: #262626;
+}
+
+.loginregistration-form-input {
+    width: 20%;
+}
+
+.loginregistration-form-input input {
+    border: 1px solid #DADCDC;
+    border-radius: 10px;
+    padding: 10px 0 10px 15px;
+    width: 100%;
+}
+
+.loginregistration-form-input input::placeholder {
+    color: #DADCDC;
+    line-height: 150%;
+}
+
+.loginregistration-form-btn {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px 0;
+}
+
+.loginregistration-form-btn button {
+    height: 4.5vh;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 120%;
+}
+
+.loginregistration-form-btn-first {
+    background: #00C65E;
+    color: #fff;
+}
+
+.loginregistration-form-btn-last {
+    border: 1px solid #00C65E;
+    color: #00C65E;
+}
+
+.loginregistration-form-social {
+    width: 20%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 30px 0;
+    color: #262626;
+}
+
+.loginregistration-form-social-link {
+    display: flex;
+    gap: 0 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginregistration-form-social-link a {
+    background: #00C65E;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.loginregistration-form-btn-back{ 
+ height: fit-content !important;
+}
+
+.loginregistration-form-btn-resend{
+    height: fit-content !important;
+}

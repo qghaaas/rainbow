@@ -1,0 +1,151 @@
+.loginregistration-registration {
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 0 152px;
+    gap: 30px 0;
+    color: #262626;
+}
+
+.loginregistration-registration-title {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.first-last-name {
+    background: #DADCDC;
+    color: #fff;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 150%;
+    letter-spacing: 0.5px;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.loginregistration-registration h3 {
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    line-height: 150%;
+}
+
+.loginregistration-registration-form {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0;
+}
+
+.loginregistration-registration-form-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 5px 0;
+    position: relative;
+}
+
+.loginregistration-registration-form-inner label {
+    font-weight: 700;
+    line-height: 150%;
+}
+
+.loginregistration-registration-form-inner label>img {
+    margin-left: 5px;
+    width: 9px;
+    height: 21px;
+}
+
+.loginregistration-registration-form-inner input {
+    border: 1px solid #DADCDC;
+    border-radius: 10px;
+    width: 100%;
+    height: 4.2vh;
+    padding-left: 15px;
+    text-align: start;
+    position: relative;
+}
+
+.loginregistration-registration-form-inner input::placeholder {
+    color: #DADCDC;
+    font-size: 14px;
+    line-height: 150%;
+}
+
+.loginregistration-registration-form-inner input[type=text],
+[type=email],
+[type=password] {
+    font-size: 14px;
+    color: #363A45;
+    line-height: 150%;
+}
+
+.input-form-relative {
+    position: relative;
+}
+
+.loginregistration-registration-form-inner button {
+    display: flex;
+    gap: 0 5px;
+    position: absolute;
+    top: 45px;
+    right: 5px;
+    left: auto;
+    bottom: 0;
+    width: fit-content;
+    height: fit-content;
+}
+
+.showpassword {
+    width: 22px;
+    height: 15px;
+}
+
+.btnrating {
+    width: 15px;
+    height: 15px;
+}
+
+.showpassword-repeat button {
+    position: absolute;
+    right: 5px;
+}
+
+.registration-warning {
+    background-image: url('./img/union.png');
+    background-repeat: no-repeat;
+    color: #fff;
+    position: absolute;
+    width: 60%;
+    height: 14.5vh;
+    bottom: auto;
+    left: auto;
+    top: 70px;
+    right: -140px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.loginregistration-registration-login {
+    background: #00C65E;
+    color: #fff;
+    border-radius: 10px;
+    width: 100%;
+    height: 4.3vh;
+}
