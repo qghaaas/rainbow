@@ -20,7 +20,6 @@ app.use(cors({
 }));
 app.use(express.json());
 
-
 app.get('/api/catalog', async (req, res) => {
     try {
         const { q, category, minPrice, maxPrice, manufacturer, manufacturerSearch, inStock } = req.query;
@@ -72,8 +71,6 @@ app.get('/api/catalog', async (req, res) => {
     }
 });
 
-// ========================= КАТЕГОРИИ =========================
-
 app.get('/api/categories', async (req, res) => {
     try {
         const result = await pool.query(`SELECT name FROM Categories ORDER BY name`);
@@ -105,8 +102,6 @@ app.delete('/admin/categories/:name', async (req, res) => {
         res.status(400).json({ error: "Ошибка при удалении категории" });
     }
 });
-
-// ========================= ПРОИЗВОДИТЕЛИ =========================
 
 app.get('/api/manufacturers', async (req, res) => {
     try {
@@ -205,7 +200,6 @@ app.post('/api/login', async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
-
 
 app.post('/api/change-password', async (req, res) => {
     const { email, oldPassword, newPassword } = req.body;
@@ -331,7 +325,6 @@ app.delete('/api/cart/remove/:cart_id', async (req, res) => {
     }
 });
 
-
 const adminAuth = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
@@ -370,7 +363,6 @@ app.post('/admin/products', adminAuth, async (req, res) => {
     }
 });
 
-
 app.delete('/admin/products/:id', adminAuth, async (req, res) => {
     try {
         const { id } = req.params;
@@ -404,7 +396,6 @@ app.put('/api/update-address', async (req, res) => {
         res.status(500).json({ error: 'Ошибка сервера' });
     }
 });
-
 
 app.post('/api/add-favorite', async (req, res) => {
     const { userId, product } = req.body;
@@ -475,7 +466,6 @@ app.put('/api/favorites/remove', async (req, res) => {
         res.status(500).json({ error: 'Ошибка при удалении из избранного' });
     }
 });
-
 
 app.listen(PORT, () => {
     console.log(`Server starting on port ${PORT}`);

@@ -20,7 +20,7 @@ const AdminLogin = () => {
           'Content-Type': 'application/json',
           'Authorization': `Basic ${encodedCredentials}`,
         },
-        body: JSON.stringify({ product_name: 'test', price: 1 }) // тестовый запрос
+        body: JSON.stringify({ product_name: 'test', price: 1 })
       });
 
       if (response.status === 401) {
