@@ -1,7 +1,7 @@
 .aboutus {
     width: 100%;
     height: fit-content;
-    font-family: "Cutive Mono", monospace;
+    font-family: "Montserrat", sans-serif;
 }
 
 .aboutus-inner {
@@ -11,13 +11,13 @@
 
 .aboutus-inner h2 {
     font-size: 20px;
-    font-family: "Rubik", sans-serif;
+    font-family: "Roboto", sans-serif;
     margin-bottom: 20px;
 }
 
 .aboutus-img-subtitle {
     font-size: 20px;
-    font-family: "Rubik", sans-serif;
+    font-family: "Roboto", sans-serif;
     margin-bottom: 10px;
 }
 

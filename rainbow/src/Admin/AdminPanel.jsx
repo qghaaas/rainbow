@@ -17,7 +17,49 @@ const AdminPanel = () => {
         manufacturer: '',
         in_stock: true
     });
+    const [users, setUsers] = useState([]);
+    const [orders, setOrders] = useState([]);
+    const [activeTab, setActiveTab] = useState('users');
     const navigate = useNavigate();
+
+    const fetchOrders = async () => {
+        try {
+            const credentials = btoa('admin:admin');
+            const response = await fetch('http://localhost:3009/admin/orders', {
+                headers: {
+                    'Authorization': `Basic ${credentials}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            setOrders(data);
+        } catch (error) {
+            console.error('Error fetching orders:', error);
+            alert('Ошибка при загрузке заказов');
+        }
+    };
+
+    const fetchUsers = async () => {
+        try {
+            const credentials = btoa('admin:admin');
+            const response = await fetch('http://localhost:3009/admin/users', {
+                headers: {
+                    'Authorization': `Basic ${credentials}`
+                }
+            });
+            if (!response.ok) throw new Error('Ошибка загрузки');
+            const data = await response.json();
+            setUsers(data);
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Ошибка при загрузке пользователей');
+        }
+    };
 
     useEffect(() => {
         const isAuthenticated = localStorage.getItem('adminAuth');
@@ -27,6 +69,8 @@ const AdminPanel = () => {
             fetchProducts();
             fetchCategories();
             fetchManufacturers();
+            fetchUsers();
+            fetchOrders();
         }
     }, [navigate]);
 
@@ -142,174 +186,258 @@ const AdminPanel = () => {
                 Выйти
             </button>
 
-            <div className="admin-section">
-                <h3>Управление категориями</h3>
-                <div className="admin-form-group">
-                    <input
-                        type="text"
-                        placeholder="Новая категория"
-                        value={newCategory}
-                        onChange={(e) => setNewCategory(e.target.value)}
-                    />
-                    <button onClick={async () => {
-                        const response = await fetch('http://localhost:3009/admin/categories', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ name: newCategory })
-                        });
-                        if (response.ok) {
-                            setNewCategory('');
-                            fetchCategories();
-                        } else {
-                            alert('Ошибка при добавлении категории');
-                        }
-                    }}>
-                        Добавить категорию
-                    </button>
-                </div>
-                <div className="admin-list">
-                    {categories.map((cat, idx) => (
-                        <div key={idx} className="admin-list-item">
-                            <span>{cat}</span>
-                            <button className="delete-btn" onClick={async () => {
-                                if (window.confirm(`Удалить категорию "${cat}"?`)) {
-                                    await fetch(`http://localhost:3009/admin/categories/${cat}`, { method: 'DELETE' });
-                                    fetchCategories();
-                                }
-                            }}>Удалить</button>
-                        </div>
-                    ))}
-                </div>
-
-                <h3>Управление производителями</h3>
-                <div className="admin-form-group">
-                    <input
-                        type="text"
-                        placeholder="Новый производитель"
-                        value={newManufacturer}
-                        onChange={(e) => setNewManufacturer(e.target.value)}
-                    />
-                    <button onClick={async () => {
-                        const response = await fetch('http://localhost:3009/admin/manufacturers', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ name: newManufacturer })
-                        });
-                        if (response.ok) {
-                            setNewManufacturer('');
-                            fetchManufacturers();
-                        } else {
-                            alert('Ошибка при добавлении производителя');
-                        }
-                    }}>
-                        Добавить производителя
-                    </button>
-                </div>
-                <div className="admin-list">
-                    {manufacturers.map((man, idx) => (
-                        <div key={idx} className="admin-list-item">
-                            <span>{man}</span>
-                            <button className="delete-btn" onClick={async () => {
-                                if (window.confirm(`Удалить производителя "${man}"?`)) {
-                                    await fetch(`http://localhost:3009/admin/manufacturers/${man}`, { method: 'DELETE' });
-                                    fetchManufacturers();
-                                }
-                            }}>Удалить</button>
-                        </div>
-                    ))}
-                </div>
+            <div className="admin-tabs">
+                <button
+                    className={`tab-link ${activeTab === 'users' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('users')}
+                >
+                    Пользователи
+                </button>
+                <button
+                    className={`tab-link ${activeTab === 'orders' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('orders')}
+                >
+                    Заказы
+                </button>
+                <button
+                    className={`tab-link ${activeTab === 'categories' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('categories')}
+                >
+                    Категории
+                </button>
+                <button
+                    className={`tab-link ${activeTab === 'products' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('products')}
+                >
+                    Товары
+                </button>
             </div>
 
-            <form className='form-add-product' onSubmit={handleAddProduct}>
-                <input
-                    type="text"
-                    placeholder="Название продукта"
-                    value={formData.product_name}
-                    onChange={(e) => setFormData({ ...formData, product_name: e.target.value })}
-                    required
-                />
-                <input
-                    type="number"
-                    placeholder="Цена"
-                    value={formData.price}
-                    onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                    required
-                />
-                <input
-                    type="text"
-                    placeholder="Описание"
-                    value={formData.description}
-                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                />
-                <input
-                    type="text"
-                    placeholder="Ссылка на изображение"
-                    value={formData.image_path}
-                    onChange={(e) => setFormData({ ...formData, image_path: e.target.value })}
-                    required
-                />
-
-                <select
-                    value={formData.category}
-                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    required
-                >
-                    <option value="">Выберите категорию</option>
-                    {categories.map((category, index) => (
-                        <option key={`cat-${index}`} value={category}>{category}</option>
-                    ))}
-                </select>
-
-                <select
-                    value={formData.manufacturer}
-                    onChange={(e) => setFormData({ ...formData, manufacturer: e.target.value })}
-                    required
-                >
-                    <option value="">Выберите производителя</option>
-                    {manufacturers.map((manufacturer, index) => (
-                        <option key={`man-${index}`} value={manufacturer}>{manufacturer}</option>
-                    ))}
-                </select>
-
-                <label className="checkbox-label">
-                    <input
-                        type="checkbox"
-                        checked={formData.in_stock}
-                        onChange={(e) => setFormData({ ...formData, in_stock: e.target.checked })}
-                    />
-                    <span className="checkmark"></span>
-                    В наличии
-                </label>
-
-                <button className='button-add-product' type="submit">Добавить продукт</button>
-            </form>
-
-            <div className="products-list">
-                <h2>Список товаров ({products.length})</h2>
-                <div className="products-grid">
-                    {products.map(product => (
-                        <div key={product.id} className="product-card">
-                            <img
-                                src={product.image_path || 'placeholder-image.jpg'}
-                                alt={product.product_name}
-                                className="product-image"
-                            />
-                            <div className="product-info">
-                                <h3>{product.product_name}</h3>
-                                <p>Цена:{product.price} ₽</p>
-                                {product.description && <p>{product.description}</p>}
-                                <button
-                                    className="delete-btn"
-                                    onClick={() => handleDelete(product.id)}
-                                >
-                                    Удалить товар
-                                </button>
+            {activeTab === 'users' && (
+                <div className="admin-section">
+                    <h3>Зарегистрированные пользователи</h3>
+                    <div className="admin-list">
+                        {users.map(user => (
+                            <div key={user.id} className="admin-list-item">
+                                <div className="user-info">
+                                    <span>{user.first_name} {user.last_name}</span>
+                                    <span>Email: {user.email}</span>
+                                    {user.delivery_address &&
+                                        <span>Адрес: {user.delivery_address}</span>}
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
+                </div>)}
+
+            {activeTab === 'orders' && (
+                <div className="admin-section">
+                    <h3>Заказы</h3>
+                    <div className="orders-list">
+                        {orders.length === 0 ? (
+                            <div className="no-orders">Заказов пока нет</div>
+                        ) : (
+                            orders.map(order => (
+                                <div key={order.id} className="order-item">
+                                    <div className="order-header">
+                                        <span>Заказ #{order.id}</span>
+                                        <span>Статус: {order.status || 'в обработке'}</span>
+                                        <span>Дата: {new Date(order.created_at).toLocaleDateString()}</span>
+                                    </div>
+                                    <div className="order-user">
+                                        Пользователь: {order.first_name} {order.last_name} ({order.email})
+                                    </div>
+                                    <div className="order-details">
+                                        <div className="order-products-header">Товары:</div>
+                                        {order.items.map((item, index) => (
+                                            <div key={index} className="order-product-item">
+                                                <span>{item.product_name}</span>
+                                                <span>{item.quantity} × {item.price}₽</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="order-footer">
+                                        <span>Итого: {order.total}₽</span>
+                                    </div>
+                                </div>
+                            ))
+                        )}
+                    </div>
                 </div>
-            </div>
-        </div >
+            )}
+
+            {activeTab === 'categories' && (
+                <div className="admin-section">
+                    <h3>Управление категориями</h3>
+                    <div className="admin-form-group">
+                        <input
+                            type="text"
+                            placeholder="Новая категория"
+                            value={newCategory}
+                            onChange={(e) => setNewCategory(e.target.value)}
+                        />
+                        <button onClick={async () => {
+                            const response = await fetch('http://localhost:3009/admin/categories', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ name: newCategory })
+                            });
+                            if (response.ok) {
+                                setNewCategory('');
+                                fetchCategories();
+                            } else {
+                                alert('Ошибка при добавлении категории');
+                            }
+                        }}>
+                            Добавить категорию
+                        </button>
+                    </div>
+                    <div className="admin-list">
+                        {categories.map((cat, idx) => (
+                            <div key={idx} className="admin-list-item">
+                                <span>{cat}</span>
+                                <button className="delete-btn" onClick={async () => {
+                                    if (window.confirm(`Удалить категорию "${cat}"?`)) {
+                                        await fetch(`http://localhost:3009/admin/categories/${cat}`, { method: 'DELETE' });
+                                        fetchCategories();
+                                    }
+                                }}>Удалить</button>
+                            </div>
+                        ))}
+                    </div>
+
+                    <h3>Управление производителями</h3>
+                    <div className="admin-form-group">
+                        <input
+                            type="text"
+                            placeholder="Новый производитель"
+                            value={newManufacturer}
+                            onChange={(e) => setNewManufacturer(e.target.value)}
+                        />
+                        <button onClick={async () => {
+                            const response = await fetch('http://localhost:3009/admin/manufacturers', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ name: newManufacturer })
+                            });
+                            if (response.ok) {
+                                setNewManufacturer('');
+                                fetchManufacturers();
+                            } else {
+                                alert('Ошибка при добавлении производителя');
+                            }
+                        }}>
+                            Добавить производителя
+                        </button>
+                    </div>
+                    <div className="admin-list">
+                        {manufacturers.map((man, idx) => (
+                            <div key={idx} className="admin-list-item">
+                                <span>{man}</span>
+                                <button className="delete-btn" onClick={async () => {
+                                    if (window.confirm(`Удалить производителя "${man}"?`)) {
+                                        await fetch(`http://localhost:3009/admin/manufacturers/${man}`, { method: 'DELETE' });
+                                        fetchManufacturers();
+                                    }
+                                }}>Удалить</button>
+                            </div>
+                        ))}
+                    </div>
+                </div>)}
+
+            {activeTab === 'products' && (
+                <>
+                    <form className='form-add-product' onSubmit={handleAddProduct}>
+                        <input
+                            type="text"
+                            placeholder="Название продукта"
+                            value={formData.product_name}
+                            onChange={(e) => setFormData({ ...formData, product_name: e.target.value })}
+                            required
+                        />
+                        <input
+                            type="number"
+                            placeholder="Цена"
+                            value={formData.price}
+                            onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                            required
+                        />
+                        <input
+                            type="text"
+                            placeholder="Описание"
+                            value={formData.description}
+                            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Ссылка на изображение"
+                            value={formData.image_path}
+                            onChange={(e) => setFormData({ ...formData, image_path: e.target.value })}
+                            required
+                        />
+
+                        <select
+                            value={formData.category}
+                            onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                            required
+                        >
+                            <option value="">Выберите категорию</option>
+                            {categories.map((category, index) => (
+                                <option key={`cat-${index}`} value={category}>{category}</option>
+                            ))}
+                        </select>
+
+                        <select
+                            value={formData.manufacturer}
+                            onChange={(e) => setFormData({ ...formData, manufacturer: e.target.value })}
+                            required
+                        >
+                            <option value="">Выберите производителя</option>
+                            {manufacturers.map((manufacturer, index) => (
+                                <option key={`man-${index}`} value={manufacturer}>{manufacturer}</option>
+                            ))}
+                        </select>
+
+                        <label className="checkbox-label">
+                            <input
+                                type="checkbox"
+                                checked={formData.in_stock}
+                                onChange={(e) => setFormData({ ...formData, in_stock: e.target.checked })}
+                            />
+                            <span className="checkmark"></span>
+                            В наличии
+                        </label>
+
+                        <button className='button-add-product' type="submit">Добавить продукт</button>
+                    </form>
+
+                    <div className="products-list">
+                        <h2>Список товаров ({products.length})</h2>
+                        <div className="products-grid">
+                            {products.map(product => (
+                                <div key={product.id} className="product-card">
+                                    <img
+                                        src={product.image_path || 'placeholder-image.jpg'}
+                                        alt={product.product_name}
+                                        className="product-image"
+                                    />
+                                    <div className="product-info">
+                                        <h3>{product.product_name}</h3>
+                                        <p>Цена:{product.price} ₽</p>
+                                        {product.description && <p>{product.description}</p>}
+                                        <button
+                                            className="delete-btn"
+                                            onClick={() => handleDelete(product.id)}
+                                        >
+                                            Удалить товар
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </>)}
+        </div>
     );
 };
 

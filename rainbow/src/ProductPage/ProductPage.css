@@ -1,7 +1,7 @@
 .productpage {
     width: 100%;
     height: fit-content;
-    font-family: "Cutive Mono", monospace;
+    font-family: "Montserrat", sans-serif;
     margin-bottom: 50px;
 }
 
@@ -29,7 +29,7 @@
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 20px;
-    font-family: "Rubik", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 .productpage-content-subtitle {
@@ -92,7 +92,7 @@
 
 .productpage-content-basket-linkpage {
     background-color: #00C65E;
-    font-family: "Rubik", sans-serif;
+    font-family: "Montserrat", sans-serif;
     width: 60%;
     text-align: center;
     padding: 5px;
@@ -107,6 +107,7 @@
     padding: 10px 0;
     position: relative;
     align-self: flex-end;
+    font-family: "Montserrat", sans-serif;
 }
 
 .productpage-details {
@@ -115,7 +116,7 @@
     background-color: #f5f5f5;
     border-radius: 8px;
     font-size: 15px;
-    font-family: "Rubik", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 .productpage-details p {

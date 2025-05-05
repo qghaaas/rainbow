@@ -13,7 +13,7 @@ export default function Footer() {
                     <div className="footer-inner">
                         <div className='logo-footer'>
                             <Link to="/"><img src={logo} alt="" /></Link>
-                            <Link to="Главная"> <h1>RAINBOW</h1> </Link>
+                            <Link to="Главная"> <h1>РАДУГА</h1> </Link>
                         </div>
 
                         <div className='contacts-footer'>

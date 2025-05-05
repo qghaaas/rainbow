@@ -1,0 +1,138 @@
+.spec-offers {
+    padding: 60px 0;
+    background: #f8f9fa;
+    font-family: "Montserrat", sans-serif;
+    height: 100vh;
+}
+
+.spec-offers-inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.spec-offers-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.spec-offers-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.spec-offers-content {
+    height: 300px;
+    background: #fff;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.spec-offers-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(44,62,80,0.1), transparent);
+}
+
+.spec-offers-content img {
+    width: 70%;
+    transition: transform 0.3s;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+}
+
+.spec-offers-item:hover .offers-content img {
+    transform: scale(1.05);
+}
+
+.spec-offers-item p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #2c3e50;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.spec-offers-item p::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: #00C65E;
+    transition: width 0.3s;
+}
+
+.spec-offers-item:hover p::after {
+    width: 80px;
+}
+
+.spec-offers-item:not([href]) .offers-content {
+    background: #f1f1f1;
+    opacity: 0.7;
+}
+
+.spec-offers-item:not([href]) p {
+    color: #95a5a6;
+}
+
+.status-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 2;
+}
+
+.spec-offers-item:hover .status-overlay {
+    opacity: 1;
+}
+
+.status-overlay span {
+    font-family: "Roboto", sans-serif;
+    font-size: 1.8rem;
+    color: #00C65E;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.status-overlay p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.1rem;
+    color: #2c3e50;
+    text-align: center;
+    max-width: 80%;
+    margin: 0;
+}
+
+.spec-offers-item:not([href]) .status-overlay {
+    opacity: 1;
+    background: rgba(241, 241, 241, 0.95);
+}
+
+.spec-offers-item:not([href]) .status-overlay span {
+    color: #95a5a6;
+}

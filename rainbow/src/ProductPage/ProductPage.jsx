@@ -18,6 +18,45 @@ export default function ProductPage() {
     const { user } = useAuth();
     const userId = user?.id;
 
+    const handleBuyNow = async () => {
+        if (!userId) {
+            alert('Пожалуйста, войдите в аккаунт');
+            return;
+        }
+
+        try {
+            const orderData = {
+                user_id: userId,
+                items: [{
+                    product_id: product.id,
+                    product_name: product.product_name,
+                    quantity: count,
+                    price_at_adding: product.price
+                }],
+                total: product.price * count
+            };
+
+            const response = await fetch('http://localhost:3009/api/orders', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token || ''}`
+                },
+                body: JSON.stringify(orderData)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Ошибка оформления заказа');
+            }
+
+            navigate('/paymentpage');
+        } catch (error) {
+            console.error('Ошибка оформления заказа:', error);
+            alert(error.message);
+        }
+    };
+
     useEffect(() => {
         const fetchProduct = async () => {
             try {
@@ -138,7 +177,9 @@ export default function ProductPage() {
                                 </div>
                             </div>
 
-                            <Link className='buyioc' to='/paymentpage'>Купить в 1 клик</Link>
+                            <button className='buyioc' onClick={handleBuyNow}>
+                                Купить в 1 клик
+                            </button>
 
                             <div className="productpage-details">
                                 <p><strong>Категория:</strong> {product.category || 'Не указана'}</p>

@@ -8,7 +8,7 @@ footer {
     width: 100%;
     background-color: rgb(241 241 241);
     margin-top: auto; 
-    font-family: "Cutive Mono", monospace;
+    font-family: "Montserrat", sans-serif;
 }
 
 .footer-inner {
@@ -29,7 +29,7 @@ footer {
 .logo-footer h1 {
     margin: 0;
     font-size: 20px;
-    font-family: "Rubik", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 .contacts-footer {

@@ -84,6 +84,7 @@ export default function Header({ onSearch }) {
                                                     <li><Link to="/О нас">О нас</Link></li>
                                                     <li><Link to="/Об оплате">Об оплате</Link></li>
                                                     <li><Link to='/Каталог'>Каталог</Link></li>
+                                                    <li><Link to="/special-offers">Спецпредложения</Link></li>
                                                 </ul>
                                             </nav>
 
@@ -123,6 +124,7 @@ export default function Header({ onSearch }) {
                                         </div>
                                     )}
                                 </li>
+
                                 <li className='nav-right-content'>
                                     {isSearchActive ? null : (
                                         <img

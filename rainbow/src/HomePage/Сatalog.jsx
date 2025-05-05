@@ -9,7 +9,7 @@ import { useCart } from '../CartContext'
 import { useAuth } from '../AuthContext'
 
 
-export default function Catalog({ searchQuery = '', hideAddToCart = false }) {
+export default function Catalog({ searchQuery = '', hideAddToCart = false, offerType = null }) {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const { user } = useAuth();
@@ -51,20 +51,26 @@ export default function Catalog({ searchQuery = '', hideAddToCart = false }) {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const params = new URLSearchParams();
-                if (searchQuery) params.append('q', searchQuery);
-                if (searchParams.get('category')) params.append('category', searchParams.get('category'));
-                if (searchParams.get('minPrice')) params.append('minPrice', searchParams.get('minPrice'));
-                if (searchParams.get('maxPrice')) params.append('maxPrice', searchParams.get('maxPrice'));
-                if (searchParams.get('manufacturer')) params.append('manufacturer', searchParams.get('manufacturer'));
-                if (searchParams.get('manufacturerSearch')) params.append('manufacturer', searchParams.get('manufacturerSearch'));
-                if (searchParams.get('inStock')) params.append('inStock', searchParams.get('inStock'));
+                let url;
+                if (offerType) {
+                    url = `http://localhost:3009/api/products/${offerType}`;
+                } else {
+                    const params = new URLSearchParams();
+                    if (searchQuery) params.append('q', searchQuery);
+                    if (searchParams.get('category')) params.append('category', searchParams.get('category'));
+                    if (searchParams.get('minPrice')) params.append('minPrice', searchParams.get('minPrice'));
+                    if (searchParams.get('maxPrice')) params.append('maxPrice', searchParams.get('maxPrice'));
+                    if (searchParams.get('manufacturer')) params.append('manufacturer', searchParams.get('manufacturer'));
+                    if (searchParams.get('manufacturerSearch')) params.append('manufacturer', searchParams.get('manufacturerSearch'));
+                    if (searchParams.get('inStock')) params.append('inStock', searchParams.get('inStock'));
 
-                const url = `http://localhost:3009/api/catalog?${params.toString()}`;
+                    url = `http://localhost:3009/api/catalog?${params.toString()}`;
+                }
+
                 const response = await fetch(url);
-                
+
                 if (!response.ok) throw new Error('Ошибка загрузки данных');
-                
+
                 const result = await response.json();
                 setData(result);
             } catch (error) {
@@ -75,7 +81,7 @@ export default function Catalog({ searchQuery = '', hideAddToCart = false }) {
         };
 
         fetchData();
-    }, [searchQuery, searchParams]);
+    }, [searchQuery, searchParams, offerType]); 
 
 
     const addToFavorites = async (product) => {
@@ -117,7 +123,7 @@ export default function Catalog({ searchQuery = '', hideAddToCart = false }) {
         <section className='catalog'>
             <div className="container">
                 <div className="catalog-inner">
-                    <Link className='linktocatalog' to='/Каталог'>Каталог</Link>
+                    {!offerType && <Link className='linktocatalog' to='/Каталог'>Каталог</Link>}
                     {isLoading ? (
                         <div className="loading">Загрузка...</div>
                     ) : data.length === 0 ? (
@@ -132,6 +138,11 @@ export default function Catalog({ searchQuery = '', hideAddToCart = false }) {
                                 {data.map((catalog) => (
                                     <div className='card' key={catalog.id}>
                                         <div className='card-top'>
+
+                                            {catalog.total_orders >= 3 && (
+                                                <div className="popular-badge">Хит</div>
+                                            )}
+
                                             <button onClick={() => addToFavorites(catalog)}>
                                                 <img className='card-like' src={like} alt="Добавить в избранное" />
                                             </button>
@@ -163,12 +174,13 @@ export default function Catalog({ searchQuery = '', hideAddToCart = false }) {
                                 ))}
                             </div>
 
-                            {!searchQuery && (
+                            {!searchQuery && !offerType && (
                                 <button className='see-all'>
                                     <p>Смотреть все</p>
                                     <img src={arrow} alt="Стрелка" />
                                 </button>
                             )}
+
                         </>
                     )}
                 </div>
@@ -176,3 +188,8 @@ export default function Catalog({ searchQuery = '', hideAddToCart = false }) {
         </section>
     )
 }
+
+// function isNewProduct(createdAt) {
+//     const twoWeeksAgo = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000);
+//     return new Date(createdAt) > twoWeeksAgo;
+// }

@@ -1,20 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-/* .rubik-<uniquifier> {
-  font-family: "Rubik", sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* .montserrat-<uniquifier> {
+  font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: <weight>;
   font-style: normal;
 } */
 
-
-
-@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
-/* .cutive-mono-regular {
-  font-family: "Cutive Mono", monospace;
-  font-weight: 400;
+/* .roboto-<uniquifier> {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
   font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 } */
-
 
 *,
 *::after,

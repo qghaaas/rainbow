@@ -8,6 +8,7 @@ import Catalog from '../HomePage/Сatalog'
 import React, { useState, useEffect } from 'react'
 import { useCart } from '../CartContext'
 import { useAuth } from '../AuthContext'
+import { useNavigate } from 'react-router-dom';
 
 export default function BasketPage() {
     const [cartItems, setCartItems] = useState([]);
@@ -15,6 +16,48 @@ export default function BasketPage() {
     const { user } = useAuth();
     const [isUpdating, setIsUpdating] = useState(false);
     const { fetchCartCount } = useCart();
+    const navigate = useNavigate();
+
+    const handleCheckout = async () => {
+        try {
+            const orderData = {
+                user_id: user.id,
+                items: cartItems.map(item => ({
+                    product_id: item.product_id, 
+                    quantity: item.quantity
+                })),
+                total: totals.cart_total
+            };
+    
+            const response = await fetch('http://localhost:3009/api/orders', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token || ''}`
+                },
+                body: JSON.stringify(orderData)
+            });
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Ошибка оформления заказа');
+            }
+            
+            await Promise.all(cartItems.map(item => 
+                fetch(`http://localhost:3009/api/cart/remove/${item.id}`, { 
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${user.token || ''}`
+                    }
+                })
+            ));
+            
+            navigate('/paymentpage');
+        } catch (error) {
+            console.error('Ошибка оформления заказа:', error);
+            alert(error.message);
+        }
+    };
 
     const fetchCartData = async () => {
         try {
@@ -185,13 +228,12 @@ export default function BasketPage() {
                                 <button>Введите промокод</button>
                                 <span>{totals.cart_total || 0} ₽</span>
                             </div>
-                            <Link to='/paymentpage'>Оформить заказ</Link>
+                            <button className='Place-an-order' onClick={handleCheckout}>Оформить заказ</button>
                         </div>
                     </div>
                 </div>
             </div>
             <Catalog />
         </section>
-
     );
 }

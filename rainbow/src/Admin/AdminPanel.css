@@ -1,19 +1,18 @@
 .admin-panel {
     padding: 20px;
-    max-width: 1200px;
+    width: 80%;
     margin: 0 auto;
-    font-family: "Cutive Mono", monospace;
 }
 
 .title-admin-h {
     font-size: 20px;
-    font-family: "Rubik", sans-serif;
+    font-family: "Roboto", sans-serif;
     margin-bottom: 10px;
 }
 
 .getout-admin {
     font-size: 16px;
-    font-family: "Cutive Mono", monospace;
+    font-family: "Montserrat", sans-serif;
     background-color: #d12b2b;
     padding: 5px 20px;
     border-radius: 5px;
@@ -63,6 +62,7 @@
 
 .product-info {
     margin-top: 10px;
+    font-family: "Montserrat", sans-serif;
 }
 
 .delete-btn {
@@ -72,8 +72,8 @@
     color: white;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
     width: 100%;
+    font-family: "Montserrat", sans-serif;
 }
 
 .delete-btn:hover {
@@ -103,13 +103,13 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-family: "Rubik", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 14px;
 }
 
 .products-list>h2 {
     font-size: 20px;
-    font-family: "Rubik", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 .admin-login-wrapper {
@@ -117,7 +117,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Rubik", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 .admin-login-form {
@@ -167,15 +167,17 @@
 }
 
 .admin-section {
-    margin-top: 40px;
-    padding: 20px;
-    background-color: #f1f1f1;
-    border-radius: 10px;
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
+
 
 .admin-section h3 {
     font-size: 18px;
-    font-family: "Rubik", sans-serif;
+    font-family: "Roboto", sans-serif;
     margin-bottom: 15px;
 }
 
@@ -200,7 +202,7 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-family: "Rubik", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 14px;
 }
 
@@ -224,7 +226,7 @@
 }
 
 .admin-list-item span {
-    font-family: "Cutive Mono", monospace;
+    font-family: "Montserrat", sans-serif;
 }
 
 .admin-list-item .delete-btn {
@@ -233,5 +235,97 @@
     font-size: 13px;
 }
 
+.orders-list {
+    margin-top: 20px;
+}
+
+.order-item {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    font-family: "Montserrat", sans-serif;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.order-user {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+
+.order-details {
+    margin: 10px 0;
+}
+
+.order-product {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.order-total {
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: right;
+    color: #2c3e50;
+}
+
+.admin-tabs {
+    display: flex;
+    gap: 5px;
+    margin: 20px 0;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.tab-link {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    background: none;
+    color: #666;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.tab-link:hover {
+    background: rgba(0, 198, 94, 0.1);
+    color: #00C65E;
+}
+
+.tab-link.active {
+    background: #00C65E;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0,198,94,0.2);
+}
+
+.tab-link.active:hover {
+    background: #00b34a;
+}
+
+.tab-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -11px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #00C65E;
+}
 
 

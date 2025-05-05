@@ -1,7 +1,6 @@
 .aboutpayment {
     width: 100%;
     height: fit-content;
-    font-family: "Cutive Mono", monospace;
 }
 
 .aboutpayment-inner {
@@ -11,11 +10,12 @@
 
 .aboutpayment-inner h2 {
     font-size: 20px;
-    font-family: "Rubik", sans-serif;
+  font-family: "Roboto", sans-serif;
     margin-bottom: 20px;
 }
 
 .aboutpayment-inner p{
     line-height: 150%;
+    font-family: "Montserrat", sans-serif;
 }
 

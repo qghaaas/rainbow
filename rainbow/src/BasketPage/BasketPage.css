@@ -2,7 +2,7 @@
     width: 100%;
     height: fit-content;
     margin-bottom: 100px;
-    font-family: "Cutive Mono", monospace;
+    font-family: "Montserrat", sans-serif;
 }
 
 .basketpage-inner {
@@ -22,7 +22,7 @@
 .basketpage-inner h2 {
     font-size: 20px;
     margin-bottom: 40px;
-    font-family: "Rubik", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 .basketpage-content {
@@ -62,7 +62,7 @@
 }
 
 .basketpage-product-name-price h3 {
-    font-family: "Rubik", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 .basketpage-product-subtitle {
@@ -84,6 +84,7 @@
     gap: 0 5px;
     margin-right: 5px;
     color: rgb(230, 230, 230);
+    font-family: "Montserrat", sans-serif;
 }
 
 .basketpage-product-add_del {
@@ -124,7 +125,7 @@
 
 .basketpage-content-selected_products-inner h4 {
     font-size: 20px;
-    font-family: "Rubik", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 .basketpage-content-selected_products-inner button {
@@ -135,7 +136,7 @@
     font-size: 20px;
 }
 
-.basketpage-content-selected_products a {
+.Place-an-order {
     background-color:  #00C65E;
     color: #fff;
     width: 100%;
@@ -143,6 +144,6 @@
     align-items: center;
     justify-content: center;
     height: 4.5vh;
-    font-family: "Rubik", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 20px;
 }

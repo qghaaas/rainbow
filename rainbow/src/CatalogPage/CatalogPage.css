@@ -11,7 +11,7 @@
     gap: 0 5px;
     align-items: center;
     margin-bottom: 50px;
-    font-family: "Rubik", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 .catalogtitle {
@@ -36,7 +36,11 @@
     padding: 20px;
     border-radius: 8px;
     background-color: rgb(241 241 241);
-    font-family: "Rubik", sans-serif;
+    font-family: "Montserrat", sans-serif;
+}
+
+.filter-sidebar h3{
+    font-family: "Roboto", sans-serif;
 }
 
 .filter-group {
