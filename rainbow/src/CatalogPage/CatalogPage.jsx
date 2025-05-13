@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react'
 import Catalog from '../HomePage/Сatalog'
 
 
+
 export default function CatalogPage() {
     const [searchParams, setSearchParams] = useSearchParams();
     const searchQuery = searchParams.get('q') || '';

@@ -50,7 +50,7 @@
 .productpage-content-reviews li {
     text-align: center;
     font-size: 16px;
-    
+
 }
 
 .productpage-content-favorites {
@@ -121,4 +121,122 @@
 
 .productpage-details p {
     margin: 8px 0;
+}
+
+@media (max-width: 1024px) {
+    .productpage-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .productpage-img {
+        width: 80%;
+    }
+
+    .productpage-content-right {
+        width: 90%;
+    }
+
+    .productpage-content-subtitle {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .productpage-content-basket {
+        width: 100%;
+    }
+
+    .buyioc {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .productpage-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .productpage-img {
+        width: 90%;
+    }
+
+    .productpage-content-right {
+        width: 100%;
+    }
+
+    .productpage-content-subtitle {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .productpage-content-favorites {
+        justify-content: flex-start;
+    }
+
+    .productpage-content-bot {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .productpage-content-basket {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .productpage-content-basket-count,
+    .productpage-content-basket-linkpage {
+        width: 32%;
+    }
+
+    .buyioc {
+        width: 100%;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .productpage-content {
+        padding: 0 10px;
+    }
+
+    .productpage-img {
+        width: 100%;
+    }
+
+    .productpage-content-right h2 {
+        font-size: 18px;
+    }
+
+    .productpage-content-bot p {
+        font-size: 18px;
+    }
+
+    .productpage-content-basket-count {
+
+        font-size: 20px;
+    }
+
+    .productpage-content-basket-linkpage {
+        font-size: 8px;
+    }
+
+    .productpage-details {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .buyioc {
+        font-size: 14px;
+        padding: 10px 0;
+    }
+
+    .productpage-content-basket {
+        width: 80%;
+        height: 4vh;
+        margin: 0 auto;
+    }
 }

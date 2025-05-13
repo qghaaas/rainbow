@@ -8,6 +8,11 @@ export default function SpecialOffers() {
         <>
             <section className="spec-offers">
                 <div className="container">
+                    <div className='navigation'>
+                        <Link to='/Главная'>Главная</Link>
+                        <span>/</span>
+                        <Link to='/special-offers'>Спецпредложения</Link>
+                    </div>
                     <div className='spec-offers-inner'>
                         <div className="spec-offers-item">
                             <Link to="/offers/new">

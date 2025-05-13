@@ -48,3 +48,64 @@ footer {
     text-align: left;
 }
 
+@media (max-width: 1024px) {
+    .footer-inner {
+        padding: 30px 0;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .logo-footer h1 {
+        font-size: 18px;
+    }
+
+    .contacts-footer b {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-inner {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .logo-footer {
+        justify-content: center;
+    }
+
+    .contacts-footer {
+        text-align: center;
+    }
+
+    .contacts-footer b {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .logo-footer h1 {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-inner {
+        padding: 25px 0;
+        gap: 15px;
+    }
+
+    .logo-footer {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .logo-footer h1 {
+        font-size: 16px;
+    }
+
+    .contacts-footer b {
+        font-size: 13px;
+    }
+}

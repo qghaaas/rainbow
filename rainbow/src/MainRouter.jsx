@@ -15,7 +15,7 @@ import { AuthProvider } from './AuthContext.jsx';
 import Profile from './User/Profile';
 import PaymentPagelink from "./Route/PaymentPagelink/PaymentPagelink.jsx";
 import OfferPage from "./OfferPage/OfferPage.jsx";
-import SpecialOffers from './SpecialOffers/SpecialOffers.jsx'
+import SpecialOfferslink from "./Route/SpecialOfferslink/SpecialOfferslink.jsx";
 
 
 export default function MainRouter() {
@@ -43,7 +43,7 @@ export default function MainRouter() {
                             <Route path="/profile" element={<Profile />} />
                             <Route path="/paymentpage" element={<PaymentPagelink />} />
                             <Route path="/offers/:type" element={<OfferPage />} />
-                            <Route path="/special-offers" element={<SpecialOffers/>} />
+                            <Route path="/special-offers" element={<SpecialOfferslink/>} />
 
                         </Routes>
 

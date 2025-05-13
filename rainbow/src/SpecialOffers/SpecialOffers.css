@@ -136,3 +136,101 @@
 .spec-offers-item:not([href]) .status-overlay span {
     color: #95a5a6;
 }
+
+@media (max-width: 1200px) {
+    .spec-offers-inner {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .spec-offers-inner {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .spec-offers-item p {
+        font-size: 1rem;
+    }
+
+    .spec-offers-content img {
+        width: 80%;
+    }
+
+    .status-overlay span {
+        font-size: 1.5rem;
+    }
+
+    .status-overlay p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .spec-offers {
+        padding: 40px 0;
+    }
+
+    .spec-offers-inner {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .spec-offers-item p {
+        font-size: 1rem; 
+    }
+
+    .spec-offers-content {
+        height: 200px; 
+    }
+
+    .spec-offers-content img {
+        width: 40%;  
+    }
+
+    .status-overlay span {
+        font-size: 1.4rem;
+    }
+
+    .status-overlay p {
+        font-size: 0.9rem; 
+    }
+
+    .spec-offers-content{
+        width: 60%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .spec-offers {
+        padding: 30px 0;
+    }
+
+    .spec-offers-inner {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .spec-offers-item p {
+        font-size: 0.9rem;
+    }
+
+    .spec-offers-content {
+        height: 180px;
+    }
+
+    .spec-offers-content img {
+        width: 70%; 
+    }
+
+    .status-overlay span {
+        font-size: 1.2rem;
+    }
+
+    .status-overlay p {
+        font-size: 0.85rem;
+    }
+}
+

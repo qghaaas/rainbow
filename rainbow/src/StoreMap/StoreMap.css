@@ -1,0 +1,85 @@
+.store-map-container {
+  margin: 0 5%
+}
+
+.store-map-title {
+  font-size: 20px;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-family: "Roboto", sans-serif;
+  color: #2c3e50;
+}
+
+.store-map-box {
+  border-radius: 16px;
+  overflow: hidden;
+
+  width: 100%;
+}
+
+.store-map-inner {
+  background: #f8f9fa;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  padding: 2rem;
+  max-width: 1500px;
+  width: 100%;
+  margin: 2rem auto;
+  color: #ffffff;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.store-map {
+  width: 100% !important;
+  height: 420px !important;
+  min-height: 300px;
+  border-radius: 16px;
+  display: block;
+}
+
+.store-map-inner:hover {
+  box-shadow: 0 0 25px rgba(100, 100, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+    .store-map-inner {
+        padding: 1.5rem;
+        margin: 1rem auto; 
+    }
+
+    .store-map-title {
+        font-size: 18px;
+        margin-bottom: 1rem; 
+    }
+
+    .store-map-box {
+        border-radius: 12px; 
+        width: 100%;
+    }
+
+    .store-map {
+        height: 300px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .store-map-inner {
+        padding: 1rem; 
+        margin: 0.5rem auto;  
+    }
+
+    .store-map-title {
+        font-size: 16px;
+        margin-bottom: 0.8rem; 
+    }
+
+    .store-map-box {
+        border-radius: 10px;
+    }
+
+    .store-map {
+        height: 220px !important;
+    }
+}

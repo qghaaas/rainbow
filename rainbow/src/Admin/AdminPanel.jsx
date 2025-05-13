@@ -44,6 +44,48 @@ const AdminPanel = () => {
         }
     };
 
+    const handleAcceptOrder = async (orderId) => {
+        try {
+            const credentials = btoa('admin:admin');
+            const response = await fetch(`http://localhost:3009/admin/orders/${orderId}/accept`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Basic ${credentials}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) throw new Error('Ошибка принятия заказа');
+
+            await fetchOrders();
+            alert('Заказ успешно принят!');
+        } catch (error) {
+            console.error('Error:', error);
+            alert(error.message);
+        }
+    };
+
+    const handleRejectOrder = async (orderId) => {
+        try {
+            const credentials = btoa('admin:admin');
+            const response = await fetch(`http://localhost:3009/admin/orders/${orderId}/reject`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Basic ${credentials}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) throw new Error('Ошибка отклонения заказа');
+
+            await fetchOrders();
+            alert('Заказ успешно отклонен!');
+        } catch (error) {
+            console.error('Error:', error);
+            alert(error.message);
+        }
+    };
+
     const fetchUsers = async () => {
         try {
             const credentials = btoa('admin:admin');
@@ -240,24 +282,87 @@ const AdminPanel = () => {
                             orders.map(order => (
                                 <div key={order.id} className="order-item">
                                     <div className="order-header">
-                                        <span>Заказ #{order.id}</span>
-                                        <span>Статус: {order.status || 'в обработке'}</span>
-                                        <span>Дата: {new Date(order.created_at).toLocaleDateString()}</span>
+                                        <div className="order-meta">
+                                            <span className="order-number">Заказ #{order.id}</span>
+                                            <span className={`order-status status-${order.status}`}>
+                                                {order.status === 'pending' && 'Ожидает решения'}
+                                                {order.status === 'accepted' && 'Принят'}
+                                                {order.status === 'rejected' && 'Отклонен'}
+                                            </span>
+                                        </div>
+                                        <span className="order-date">
+                                            {new Date(order.created_at).toLocaleDateString('ru-RU', {
+                                                day: 'numeric',
+                                                month: 'long',
+                                                year: 'numeric',
+                                                hour: '2-digit',
+                                                minute: '2-digit'
+                                            })}
+                                        </span>
                                     </div>
-                                    <div className="order-user">
-                                        Пользователь: {order.first_name} {order.last_name} ({order.email})
+
+                                    <div className="order-user-info">
+                                        <h4>Информация о клиенте:</h4>
+                                        <div className="user-details">
+                                            <p>
+                                                <span className="detail-label">Имя:</span>
+                                                {order.first_name} {order.last_name}
+                                            </p>
+                                            <p>
+                                                <span className="detail-label">Email:</span>
+                                                {order.email}
+                                            </p>
+                                            {order.delivery_address && (
+                                                <p>
+                                                    <span className="detail-label">Адрес доставки:</span>
+                                                    {order.delivery_address}
+                                                </p>
+                                            )}
+                                        </div>
                                     </div>
-                                    <div className="order-details">
-                                        <div className="order-products-header">Товары:</div>
-                                        {order.items.map((item, index) => (
-                                            <div key={index} className="order-product-item">
-                                                <span>{item.product_name}</span>
-                                                <span>{item.quantity} × {item.price}₽</span>
-                                            </div>
-                                        ))}
+
+                                    <div className="order-products">
+                                        <h4>Состав заказа:</h4>
+                                        <div className="products-list">
+                                            {order.items.map((item, index) => (
+                                                <div key={index} className="product-item">
+                                                    <span className="product-name">{item.product_name}</span>
+                                                    <div className="product-meta">
+                                                        <span className="product-quantity">
+                                                            {item.quantity} шт.
+                                                        </span>
+                                                        <span className="product-price">
+                                                            {item.price}₽/шт.
+                                                        </span>
+                                                        <span className="product-total">
+                                                            {item.quantity * item.price}₽
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
+
                                     <div className="order-footer">
-                                        <span>Итого: {order.total}₽</span>
+                                        <div className="total-sum">
+                                            Итого: <span>{order.total}₽</span>
+                                        </div>
+                                        {order.status === 'pending' && (
+                                            <div className="order-actions">
+                                                <button
+                                                    className="accept-button"
+                                                    onClick={() => handleAcceptOrder(order.id)}
+                                                >
+                                                    ✓ Принять заказ
+                                                </button>
+                                                <button
+                                                    className="reject-button"
+                                                    onClick={() => handleRejectOrder(order.id)}
+                                                >
+                                                    ✕ Отклонить заказ
+                                                </button>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             ))

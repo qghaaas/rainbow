@@ -1,6 +1,8 @@
 import { useAuth } from '../AuthContext.jsx';
 import './Profile.css'
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import arrowleft from '../BasketPage/img/arrowleft.svg'
 
 export default function Profile() {
     const { user, logout } = useAuth();
@@ -144,6 +146,10 @@ export default function Profile() {
     return (
         <section className='user-page'>
             <div className='container'>
+                <div className='navigation navigation-bas'>
+                    <img src={arrowleft} alt="" />
+                    <Link to='/Главная'>Назад</Link>
+                </div>
                 <div className='user-page-inner'>
                     <h2>Ваш профиль</h2>
                     {user && (

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import showpassword from './img/showpassword.svg';
 import btnrating from './img/btnrating.svg';
 import { useAuth } from '../AuthContext.jsx';
-
+import arrowleft from '../BasketPage/img/arrowleft.svg'
 
 
 export default function Login() {
@@ -31,7 +31,7 @@ export default function Login() {
 
             if (response.ok) {
                 const userData = await response.json();
-                login(userData.user); 
+                login(userData.user);
                 navigate('/');
             } else {
                 alert('Неверный email или пароль');
@@ -46,6 +46,10 @@ export default function Login() {
         <section className="loginregistration">
             <div className="loginregistration-inner">
                 <div className="loginregistration-form">
+                    <div className='navigation navigation-bas login-regist-back'>
+                        <img src={arrowleft} alt="" />
+                        <Link to='/Главная'>Назад</Link>
+                    </div>
                     <div className="loginregistration-form-title">
                         <h3>Вход</h3>
                         <p>Введите ваши учетные данные для входа</p>

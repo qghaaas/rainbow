@@ -176,7 +176,7 @@ export default function Catalog({ searchQuery = '', hideAddToCart = false, offer
 
                             {!searchQuery && !offerType && (
                                 <button className='see-all'>
-                                    <p>Смотреть все</p>
+                                    <Link to="/Каталог">Смотреть все</Link>
                                     <img src={arrow} alt="Стрелка" />
                                 </button>
                             )}

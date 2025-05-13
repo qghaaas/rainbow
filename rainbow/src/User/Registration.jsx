@@ -6,6 +6,8 @@ import showpassword from './img/showpassword.svg'
 import btnrating from './img/btnrating.svg'
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import arrowleft from '../BasketPage/img/arrowleft.svg'
+
 
 export default function Registration() {
     const [formData, setFormData] = useState({
@@ -79,6 +81,10 @@ export default function Registration() {
         <section className="loginregistration">
             <div className="loginregistration-inner">
                 <div className="loginregistration-registration">
+                    <div className='navigation navigation-bas login-regist-back'>
+                        <img src={arrowleft} alt="" />
+                        <Link to='/Главная'>Назад</Link>
+                    </div>
                     <h3>Регистрация</h3>
 
                     <form className='loginregistration-registration-form' onSubmit={handleSubmit}>

@@ -177,3 +177,78 @@
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
+
+
+@media (max-width: 1024px) {
+    .catalog-layout {
+        flex-direction: column;
+    }
+
+    .filter-sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .catalogtitle {
+        margin-left: 0;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .filter-group label,
+    .filter-group input,
+    .filter-group select,
+    .apply-button {
+        font-size: 13px;
+    }
+
+    .apply-button {
+        width: 100%;
+    }
+
+    .manufacturer-option {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+
+    .show-more, .show-less {
+        font-size: 12px;
+        padding: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-sidebar {
+        padding: 15px;
+    }
+
+    .filter-group {
+        margin-bottom: 15px;
+    }
+
+    .manufacturer-search {
+        font-size: 13px;
+    }
+
+    .checkbox-label {
+        font-size: 13px;
+    }
+
+    .checkmark {
+        width: 14px;
+        height: 14px;
+    }
+
+    .checkbox-label .checkmark:after {
+        top: 1px;
+        left: 4px;
+        width: 3px;
+        height: 6px;
+    }
+
+    .navigation {
+        font-size: 13px;
+    }
+}

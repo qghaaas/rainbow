@@ -17,10 +17,10 @@ export default function PaymentPage() {
                     {loading ? (
                         <div className="loader-wrapper">
                             <div className="loader"></div>
-                            <p>Проверяем платёжную систему...</p>
+                            <p>Отправляем заказ администратору...</p>
                         </div>
                     ) : (
-                        <h2>Сервис временно недоступен,<br />приносим свои извинения</h2>
+                        <h2>Заказ отправлен администратору,<br />ожидайте ответа</h2>
                     )}
                 </div>
             </div>
