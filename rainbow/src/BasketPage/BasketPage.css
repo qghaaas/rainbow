@@ -233,6 +233,105 @@
     background-color: #009d4e;
 }
 
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.checkout-popup {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.close-popup {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+.user-info p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.delivery-method {
+    margin: 20px 0;
+}
+
+.delivery-method label {
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.delivery-method input {
+    margin-right: 10px;
+}
+
+.date-selection {
+    margin: 20px 0;
+}
+
+.date-selection label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.date-selection input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.pickup-notice {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.pickup-notice p {
+    margin: 5px 0;
+}
+
+.confirm-order-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #009d4e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.confirm-order-btn:hover {
+    background-color: #009d4e;
+}
+
 @media (min-width: 768px) {
     .basketpage-content {
         flex-direction: row;

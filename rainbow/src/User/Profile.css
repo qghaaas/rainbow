@@ -13,7 +13,8 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
-h2, h3 {
+h2,
+h3 {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -82,7 +83,7 @@ h2, h3 {
     border: solid 1px;
 }
 
-.delivery-address-form button{
+.delivery-address-form button {
     background-color: #ff4d4d;
     color: white;
     padding: 10px 15px;
@@ -129,4 +130,29 @@ h2, h3 {
 
 .favorite-item button:hover {
     background: #e64747;
+}
+
+.phone_number button {
+    color: #e64747;
+    text-decoration: underline;
+    margin-left: 10px;
+    text-transform: uppercase;
+}
+
+.enter-phone-number button {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-weight: bold;  
+}
+
+.enter-phone-number input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
 }

@@ -1,12 +1,17 @@
 import '../main.css';
 import './Offers.css';
-import photoOFF from './img/photoOFF.png';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import newoffers from './img/newoffers.jpg';
+import stock from './img/stock.jpg';
+import bestsellers from './img/bestsellers.jpg';
+import exclusive from './img/exclusive.jpg';
+import editors from './img/editors.jpg';
+import limited from './img/limited.jpg';
 
 export default function Offers() {
     function getDescription(title) {
@@ -22,13 +27,14 @@ export default function Offers() {
     }
 
     const offers = [
-        { title: 'Новинки', path: '/offers/new' },
-        { title: 'Акции', path: '/offers/2' },
-        { title: 'Хиты продаж', path: '/offers/top' },
-        { title: 'Эксклюзив', path: '/offers/4' },
-        { title: 'Выбор редакции', path: '/offers/5' },
-        { title: 'Лимитированная серия', path: '/offers/6' }
+        { title: 'Новинки', path: '/offers/new', image: newoffers },
+        { title: 'Акции', path: '/offers/2', image: stock },
+        { title: 'Хиты продаж', path: '/offers/top', image: bestsellers },
+        { title: 'Эксклюзив', path: '/offers/4', image: exclusive },
+        { title: 'Выбор редакции', path: '/offers/5', image: editors },
+        { title: 'Лимитированная серия', path: '/offers/6', image: limited }
     ];
+
     return (
         <section className="green-offers">
             <div className="container">
@@ -54,12 +60,13 @@ export default function Offers() {
                     modules={[Navigation, Pagination, Autoplay]}
                     className="green-swiper"
                 >
-                      {offers.map((offer, index) => (
+                    {offers.map((offer, index) => (
                         <SwiperSlide key={index}>
                             <div className="green-card">
                                 <Link to={offer.path} className="green-link">
+                                 <img src={offer.image} alt={offer.title} />
                                     <div className="image-container">
-                                        <img src={photoOFF} alt={offer.title} />
+                                       
                                         <div className="hover-line"></div>
                                     </div>
                                     <div className="card-body">

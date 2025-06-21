@@ -1,11 +1,11 @@
 import { useAuth } from '../AuthContext.jsx';
 import './Profile.css'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import arrowleft from '../BasketPage/img/arrowleft.svg'
 
 export default function Profile() {
-    const { user, logout } = useAuth();
+    const { user, logout, updateUser } = useAuth();
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
@@ -15,7 +15,9 @@ export default function Profile() {
     const [addressMessage, setAddressMessage] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [favorites, setFavorites] = useState([]);
-
+    const [phoneNumber, setPhoneNumber] = useState(user?.phone_number || '+7');
+    const [phoneMessage, setPhoneMessage] = useState('');
+    const phoneInputRef = useRef(null);
 
     const fetchAddressSuggestions = async (query) => {
         const token = "0ff147ff2686d7939290aacb2c35466435a44115";
@@ -143,6 +145,51 @@ export default function Profile() {
         }
     };
 
+    const scrollToPhoneInput = () => {
+        phoneInputRef.current.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    const handlePhoneChange = (e) => {
+        let value = e.target.value;
+
+        if (!value.startsWith('+7')) {
+            value = '+7' + value.replace(/\D/g, '').slice(1);
+        } else {
+            value = '+7' + value.slice(2).replace(/\D/g, '');
+        }
+
+        if (value.length > 12) {
+            value = value.substring(0, 12);
+        }
+
+        setPhoneNumber(value);
+    };
+
+    const handleUpdatePhone = async () => {
+        if (phoneNumber.length !== 12 || !/^\+7\d{10}$/.test(phoneNumber)) {
+            setPhoneMessage('Номер должен начинаться с +7 и содержать 11 цифр');
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:3009/api/update-phone', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: user.email, phoneNumber })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setPhoneMessage('Номер успешно обновлён');
+                updateUser({ phone_number: phoneNumber });
+            } else {
+                setPhoneMessage(data.error || 'Ошибка обновления номера');
+            }
+        } catch (err) {
+            setPhoneMessage('Ошибка сети');
+        }
+    };
     return (
         <section className='user-page'>
             <div className='container'>
@@ -158,6 +205,19 @@ export default function Profile() {
                                 <li><p>Имя: {user.first_name}</p></li>
                                 <li><p>Фамилия: {user.last_name}</p></li>
                                 <li><p>Email: {user.email}</p></li>
+                                <li className='phone_number'>
+                                    <p>
+                                        Телефон: {user.phone_number || 'не указан'}
+                                        {!user.phone_number && (
+                                            <button
+                                                className="phone-link"
+                                                onClick={scrollToPhoneInput}
+                                            >
+                                                {' '}(указать)
+                                            </button>
+                                        )}
+                                    </p>
+                                </li>
                             </ul>
                             <button onClick={logout} className="logout-button">
                                 Выйти из аккаунта
@@ -234,6 +294,20 @@ export default function Profile() {
                                 </div>
                             )}
                             {message && <p className="message">{message}</p>}
+                            <hr />
+                            <div className='enter-phone-number' ref={phoneInputRef}>
+                                <h3>Телефон</h3>
+                                <input
+                                    type="tel"
+                                    value={phoneNumber}
+                                    onChange={handlePhoneChange}
+                                    placeholder="+7XXXXXXXXXX"
+                                />
+                                <button onClick={handleUpdatePhone}>
+                                    {user.phone_number ? 'Обновить номер' : 'Сохранить номер'}
+                                </button>
+                                {phoneMessage && <p className="message">{phoneMessage}</p>}
+                            </div>
                         </div>
                     )}
                 </div>

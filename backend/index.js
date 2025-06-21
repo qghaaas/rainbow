@@ -367,15 +367,24 @@ const adminAuth = (req, res, next) => {
 app.post('/admin/products', adminAuth, async (req, res) => {
     try {
         console.log('Received data:', req.body);
-        const { product_name, price, description, image_path } = req.body;
+        const { product_name, price, description, image_path, category, manufacturer } = req.body;
 
         if (!product_name || !price || isNaN(price)) {
             return res.status(400).json({ error: "Некорректные данные товара" });
         }
+        const categoryCheck = await pool.query('SELECT id FROM categories WHERE name = $1', [category]);
+        if (categoryCheck.rows.length === 0) {
+            return res.status(400).json({ error: "Указанная категория не существует" });
+        }
 
+        const manufacturerCheck = await pool.query('SELECT id FROM manufacturers WHERE name = $1', [manufacturer]);
+        if (manufacturerCheck.rows.length === 0) {
+            return res.status(400).json({ error: "Указанный производитель не существует" });
+        }
+        
         const result = await pool.query(
-            'INSERT INTO catalog (product_name, price, description, image_path) VALUES ($1, $2, $3, $4) RETURNING *',
-            [product_name, parseFloat(price), description || null, image_path || null]
+            'INSERT INTO catalog (product_name, price, description, image_path, category, manufacturer) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+            [product_name, parseFloat(price), description || null, image_path || null, category, manufacturer]
         );
 
         res.status(201).json(result.rows[0]);
@@ -491,11 +500,29 @@ app.put('/api/favorites/remove', async (req, res) => {
 
 app.post('/api/orders', async (req, res) => {
     try {
-        const { user_id, items, total } = req.body;
+        const { user_id, items, total, delivery_method, delivery_date } = req.body;
         
+        // Установка даты по умолчанию для самовывоза
+        let finalDeliveryDate = delivery_date;
+        if (delivery_method === 'pickup' && !delivery_date) {
+            const threeDaysLater = new Date();
+            threeDaysLater.setDate(threeDaysLater.getDate() + 3);
+            finalDeliveryDate = threeDaysLater.toISOString().split('T')[0];
+        }
+
         const orderResult = await pool.query(
-            'INSERT INTO orders (user_id, items, total, status) VALUES ($1, $2, $3, $4) RETURNING *',
-            [user_id, JSON.stringify(items), total, 'pending'] 
+            `INSERT INTO orders 
+            (user_id, items, total, status, delivery_method, delivery_date) 
+            VALUES ($1, $2, $3, $4, $5, $6) 
+            RETURNING *`,
+            [
+                user_id, 
+                JSON.stringify(items), 
+                total, 
+                'pending', 
+                delivery_method, 
+                finalDeliveryDate
+            ]
         );
 
         const orderId = orderResult.rows[0].id;
@@ -633,6 +660,24 @@ app.put('/admin/orders/:id/reject', async (req, res) => {
     }
 });
 
+app.put('/api/update-phone', async (req, res) => {
+    const { email, phoneNumber } = req.body;
+    
+    try {
+        const result = await pool.query(
+            `UPDATE "User" SET phone_number = $1 WHERE email = $2 RETURNING *`,
+            [phoneNumber, email]
+        );
+
+        if (result.rows.length > 0) {
+            res.status(200).json({ message: 'Phone updated' });
+        } else {
+            res.status(404).json({ error: 'User not found' });
+        }
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
 app.listen(PORT, () => {
     console.log(`Server starting on port ${PORT}`);
 });

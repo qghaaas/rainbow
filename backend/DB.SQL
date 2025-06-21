@@ -12,6 +12,9 @@ ADD COLUMN delivery_address VARCHAR(255);
 ALTER TABLE "User"
 ADD COLUMN favorite_products JSONB DEFAULT '[]';
 
+ALTER TABLE "User"
+ADD COLUMN phone_number VARCHAR(20);
+
 CREATE TABLE Catalog (
     id SERIAL PRIMARY KEY,
     image_path VARCHAR(255) NOT NULL,
@@ -81,6 +84,10 @@ CREATE TABLE orders (
     status VARCHAR(50) DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT NOW()
 );
+
+ALTER TABLE orders
+ADD COLUMN delivery_method VARCHAR(20),
+ADD COLUMN delivery_date DATE;
 
 CREATE TABLE order_items (
     id SERIAL PRIMARY KEY,

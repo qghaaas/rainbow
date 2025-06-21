@@ -16,7 +16,7 @@ export default function Catalog({ searchQuery = '', hideAddToCart = false, offer
     const { fetchCartCount } = useCart();
     const userId = user?.id;
     const [searchParams] = useSearchParams();
-
+    const { updateCart } = useCart();
 
     const addToCart = async (productId) => {
         if (!user) {
@@ -37,7 +37,7 @@ export default function Catalog({ searchQuery = '', hideAddToCart = false, offer
             });
 
             if (response.ok) {
-                await fetchCartCount();
+                await updateCart(); 
                 alert('Товар добавлен в корзину!');
             }
         } catch (error) {
@@ -81,7 +81,7 @@ export default function Catalog({ searchQuery = '', hideAddToCart = false, offer
         };
 
         fetchData();
-    }, [searchQuery, searchParams, offerType]); 
+    }, [searchQuery, searchParams, offerType]);
 
 
     const addToFavorites = async (product) => {
